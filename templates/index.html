@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Sistem Prediksi Jenis Rumput Otomatis</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Prediksi Jenis Rumput Anda 🌿</h1>
+            <p class="tagline">Temukan jenis rumput ideal berdasarkan karakteristik uniknya. Isi formulir di bawah untuk mendapatkan prediksi akurat!</p>
+        </header>
+
+        <form action="/" method="POST" class="grass-form">
+            <div class="grid-container">
+                {% for column, options in options.items() %}
+                    <div class="grid-item">
+                        <label for="{{ column }}">{{ column }}</label>
+                        <select id="{{ column }}" name="{{ column }}" required>
+                            <option value="" disabled selected>Pilih {{ column }}</option> {# Added placeholder option #}
+                            {% for option in options %}
+                                <option value="{{ option }}">{{ option }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="predict-button">Prediksi Jenis Rumput Sekarang!</button>
+        </form>
+
+        <section class="about-section">
+            <h2>Mengapa Memprediksi Jenis Rumput?</h2>
+            <p>Memahami jenis rumput sangat penting untuk perawatan yang tepat, penghematan air, dan menciptakan lanskap yang indah. Sistem kami menggunakan algoritma canggih untuk memberikan hasil yang akurat.</p>
+        </section>
+    </div>
+</body>
+</html>

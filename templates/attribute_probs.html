@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Probabilitas Atribut Rumput</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Probabilitas Atribut Berdasarkan Kelas Rumput 📊</h1>
+            <p class="tagline">Pahami bagaimana setiap atribut berkontribusi terhadap identifikasi jenis rumput.</p>
+        </header>
+
+        <div class="grid-container attribute-grid">
+            {% for klass, attributes in attribute_probs.items() %}
+                <div class="grid-item attribute-item">
+                    <h2>Kelas: <span class="attribute-class-name">{{ klass }}</span></h2>
+                    <ul class="attribute-list">
+                        {% for attribute, prob in attributes.items() %}
+                            <li><strong>{{ attribute }}:</strong> {{ prob | round(6) }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <div class="button-group">
+            <a href="{{ url_for('result') }}" class="btn-link secondary">Kembali ke Hasil Prediksi</a>
+        </div>
+    </div>
+</body>
+</html>
